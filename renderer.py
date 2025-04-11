@@ -17,7 +17,7 @@ class Renderer(object):
         for x, y in self.game_state.traverse_snake():
             match render_map[x, y]:
                 case GameConfig.SNAKE:
-                    self.game_state.game_over()
+                    self.game_state.game_over(GameConfig.GAME_OVER)
                 case GameConfig.REWARD:
                     render_map[x, y] = GameConfig.SNAKE
                     self.game_state.receive_reward()

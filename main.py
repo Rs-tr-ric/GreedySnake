@@ -45,7 +45,10 @@ def main() -> None:
     print(renderer.render())
     print(GameConfig.GAME_GUIDE)
     print('press any key to start ...')
-    start_page = True
+
+    key = msvcrt.getch()
+    snake.answer_key(key)
+    
     while True:
         loop_start = time.perf_counter()
 
@@ -53,9 +56,8 @@ def main() -> None:
             if msvcrt.kbhit():
                 key = msvcrt.getch()
                 snake.answer_key(key)
-                start_page = False
         
-        if not start_page and controller_render.should_execute():
+        if controller_render.should_execute():
             try:
                 game_state.tick(forward=True)
                 rendered_text = renderer.render()

@@ -15,7 +15,7 @@ class GameState(object):
 
     def tick(self, forward: bool = True) -> None:
         if self.score >= (self.shape[0] * self.shape[1]) - 1:
-            raise GameOver(GameConfig.VICTORY)
+            self.game_over(GameConfig.VICTORY)
         
         self.snake.tick(forward)
     
