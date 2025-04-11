@@ -1,7 +1,8 @@
 from config import GameConfig
 from error import GameOver
 from snake import Snake
-from game_map import GameMap
+from game_state import GameState
+from renderer import Renderer
 
 from collections import deque
 import msvcrt
@@ -35,12 +36,13 @@ def main() -> None:
     controller_render   = FrequencyController(GameConfig.RENDER_FPS)
     time_history = deque(maxlen=GameConfig.TIME_HISTORY_LEN) # type: deque
 
-    snake    = Snake(GameConfig.SNAKE_INIT_POS)
-    game_map = GameMap(GameConfig.GAME_MAP_SHAPE, snake)
+    snake      = Snake(GameConfig.SNAKE_INIT_POS)
+    game_state = GameState(GameConfig.GAME_MAP_SHAPE, snake)
+    renderer   = Renderer(game_state)
 
     os.system('cls')
 
-    print(game_map.render())
+    print(renderer.render())
     print(GameConfig.GAME_GUIDE)
     print('press any key to start ...')
     start_page = True
@@ -55,8 +57,8 @@ def main() -> None:
         
         if not start_page and controller_render.should_execute():
             try:
-                game_map.tick(forward=True)
-                rendered_text = game_map.render()
+                game_state.tick(forward=True)
+                rendered_text = renderer.render()
                 os.system('cls')
                 print(rendered_text)
             except GameOver as game_over:
