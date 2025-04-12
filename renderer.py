@@ -5,28 +5,28 @@ import numpy as np # type: ignore
 
 
 class Renderer(object):
-    def __init__(self, game_state: Game) -> None:
-        self.game_state = game_state
+    def __init__(self, game: Game) -> None:
+        self.game = game
 
     def render(self) -> str:        
-        render_map = np.full(shape=self.game_state.shape, fill_value=GameConfig.AIR)
+        render_map = np.full(shape=self.game.shape, fill_value=GameConfig.AIR)
         
-        x, y = self.game_state.reward
+        x, y = self.game.reward
         render_map[x, y] = GameConfig.REWARD
 
-        for x, y in self.game_state.traverse_snake():
+        for x, y in self.game.traverse_snake():
             match render_map[x, y]:
                 case GameConfig.SNAKE:
-                    self.game_state.game_over(GameConfig.GAME_OVER)
+                    self.game.game_over(GameConfig.GAME_OVER)
                 case GameConfig.REWARD:
                     render_map[x, y] = GameConfig.SNAKE
-                    self.game_state.receive_reward()
+                    self.game.receive_reward()
                 case GameConfig.AIR:
                     render_map[x, y] = GameConfig.SNAKE
                 case _:
                     raise KeyError(render_map[x, y])
 
-        m, n = self.game_state.shape
+        m, n = self.game.shape
         string = (
             GameConfig.LEFT_CORNER_PATTERN + 
             GameConfig.HORIZONTAL_BOUNDARY_PATTERN * n + 
@@ -54,7 +54,7 @@ class Renderer(object):
             GameConfig.RIGHT_CORNER_PATTERN + '\n'
         )
 
-        score_line = f'SCORE: {self.game_state.score}'.center(line_length)
+        score_line = f'SCORE: {self.game.score}'.center(line_length)
 
         string += score_line
 

@@ -36,9 +36,9 @@ def main() -> None:
     controller_render   = FrequencyController(GameConfig.RENDER_FPS)
     time_history = deque(maxlen=GameConfig.TIME_HISTORY_LEN) # type: deque
 
-    snake      = Snake(GameConfig.SNAKE_INIT_POS)
-    game_state = Game(GameConfig.GAME_MAP_SHAPE, snake)
-    renderer   = Renderer(game_state)
+    snake    = Snake(GameConfig.SNAKE_INIT_POS)
+    game     = Game(GameConfig.GAME_MAP_SHAPE, snake)
+    renderer = Renderer(game)
 
     os.system('cls')
 
@@ -59,7 +59,7 @@ def main() -> None:
         
         if controller_render.should_execute():
             try:
-                game_state.tick(forward=True)
+                game.tick(forward=True)
                 rendered_text = renderer.render()
                 os.system('cls')
                 print(rendered_text)
