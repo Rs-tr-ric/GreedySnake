@@ -19,7 +19,7 @@ uv python main.py
 ```
 
 ## How to Play
-- **​​Start Game​​**: Run `uv run python main.py`
+- **​​Start Game​​**: Run `uv run main.py`
 - **​​Movement​​**: 
     - `W`: Move Up
     - `A`: Move Left
