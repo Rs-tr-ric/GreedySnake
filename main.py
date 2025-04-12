@@ -1,7 +1,7 @@
 from config import GameConfig
 from error import GameOver
 from snake import Snake
-from state import GameState
+from game import Game
 from renderer import Renderer
 
 from collections import deque
@@ -37,7 +37,7 @@ def main() -> None:
     time_history = deque(maxlen=GameConfig.TIME_HISTORY_LEN) # type: deque
 
     snake      = Snake(GameConfig.SNAKE_INIT_POS)
-    game_state = GameState(GameConfig.GAME_MAP_SHAPE, snake)
+    game_state = Game(GameConfig.GAME_MAP_SHAPE, snake)
     renderer   = Renderer(game_state)
 
     os.system('cls')

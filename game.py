@@ -5,7 +5,7 @@ from config import GameConfig
 
 import random
 
-class GameState(object):
+class Game(object):
     def __init__(self, shape: Tuple[int, int], snake: Snake) -> None:
         self.shape = shape
         self.snake = snake
@@ -21,7 +21,7 @@ class GameState(object):
     
     def receive_reward(self) -> None:
         self.spawn_reward()
-        self.snake.lengthen()
+        self.lengthen_snake()
         self.score += 1
 
     def lengthen_snake(self) -> None:

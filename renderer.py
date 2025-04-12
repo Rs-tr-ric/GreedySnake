@@ -1,11 +1,11 @@
-from state import GameState
+from game import Game
 from config import GameConfig
 
 import numpy as np # type: ignore
 
 
 class Renderer(object):
-    def __init__(self, game_state: GameState) -> None:
+    def __init__(self, game_state: Game) -> None:
         self.game_state = game_state
 
     def render(self) -> str:        
