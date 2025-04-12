@@ -30,7 +30,7 @@ uv python main.py
     - Collide with walls
     - Collide with self
 
-# Example Interface
+## Example Interface
 ```text
  +--------------------+
  |                    |
