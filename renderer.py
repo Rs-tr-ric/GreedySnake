@@ -1,4 +1,4 @@
-from game_state import GameState
+from state import GameState
 from config import GameConfig
 
 import numpy as np # type: ignore

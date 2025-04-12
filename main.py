@@ -1,7 +1,7 @@
 from config import GameConfig
 from error import GameOver
 from snake import Snake
-from game_state import GameState
+from state import GameState
 from renderer import Renderer
 
 from collections import deque
