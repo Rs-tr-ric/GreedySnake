@@ -31,14 +31,14 @@ class Game(object):
         m, n = self.shape
 
         # generate valid points; convert to 1D indices; sort
-        excluded_indices = set()
+        excluded_indices: set[int] = set() 
         for (x, y) in self.traverse_snake():
             excluded_indices.add(x * n + y)
         sorted_excluded = sorted(excluded_indices)
         total_available = m * n - len(sorted_excluded)
         
         if total_available <= 0:
-            raise ValueError('no valid points')
+            self.game_over(GameConfig.VICTORY)
         
         # generate random position and map to index
         r = random.randint(0, total_available - 1)
@@ -84,3 +84,5 @@ class Game(object):
                 raise GameOver(GameConfig.GAME_OVER_TEXT)
             case GameConfig.VICTORY:
                 raise GameOver(GameConfig.VICTORY_TEXT)
+            case _:
+                return

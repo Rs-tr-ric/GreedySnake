@@ -12,3 +12,6 @@ wheels/
 # Tool caches
 .mypy_cache
 .ruff_cache
+
+# others
+demonstration/

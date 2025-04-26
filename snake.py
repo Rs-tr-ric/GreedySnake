@@ -59,7 +59,7 @@ class Snake(object):
         if forward:
             if self.lengthening: # do not pop
                 self.lengthening = False
-                self.snake = deque(self.snake, maxlen=self.snake.maxlen + 1) # type: ignore
+                self.snake: deque[int] = deque(self.snake, maxlen=self.snake.maxlen + 1) # type: ignore
             else:
                 x, y = self.tail_pos
                 match self.snake[0]:

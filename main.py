@@ -34,7 +34,7 @@ class FrequencyController(object):
 def main() -> None:
     controller_keyboard = FrequencyController(GameConfig.KEYBOARD_INPUT_FPS)
     controller_render   = FrequencyController(GameConfig.RENDER_FPS)
-    time_history = deque(maxlen=GameConfig.TIME_HISTORY_LEN) # type: deque
+    time_history: deque[float] = deque(maxlen=GameConfig.TIME_HISTORY_LEN)
 
     snake    = Snake(GameConfig.SNAKE_INIT_POS)
     game     = Game(GameConfig.GAME_MAP_SHAPE, snake)
